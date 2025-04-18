@@ -1,0 +1,20 @@
+UnlitGeneric
+{
+	$basetexture models/mariokart/hud/position
+	
+	$alphatest 1
+	$allowalphatocoverage 1
+	$nodecal 1
+	$nofog 1
+	$model 1
+
+	Proxies
+	{
+		ToggleTexture
+		{
+			toggleTextureVar $basetexture
+			toggleTextureFrameNumVar $frame
+			toggleShouldWrap 0
+		}
+	}
+}

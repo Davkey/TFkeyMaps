@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" 	"custom\mandrillmaze_wall"
+	"$surfaceprop" 	"rock"
+	"%keywords"	"custom mandrill"
+	"$nodecal" "1"
+}

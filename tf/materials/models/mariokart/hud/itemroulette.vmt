@@ -1,0 +1,69 @@
+UnlitGeneric
+{
+	$basetexture models/mariokart/hud/itemroulette
+	$basetexturetransform "center .5 .5 scale 1 1 rotate 0 translate 0 0"
+	
+	$alphatest 1
+	$allowalphatocoverage 1
+	$nodecal 1
+	$nofog 1
+	$model 1
+	
+	$frame 0
+	$firsty 0.03125
+	$lasty 0.625 // (1 / 32) * (19 + 1)
+	$translate "[0.0 0.0]"
+	
+	$zero 0.0
+	$rate 0.4
+	$scroll 0.0
+	$offset 0.0
+	$minusone -1
+	$itemmax 20
+	
+	Proxies
+	{		
+		TeamTexture
+		{
+		}	
+		// NOTE: do NOT copy $frame to another var
+		// it mysteriously breaks the transform with multithreading!!!
+		LinearRamp
+		{
+			rate $rate
+			initialValue $zero
+			resultVar $scroll
+		}
+		WrapMinMax
+		{ 
+			srcVar1 $scroll
+			minVal $firsty
+			maxVal $lasty
+			resultVar $scroll
+		}
+		Multiply
+		{
+			srcVar1 $frame
+			srcVar2 $firsty
+			resultVar $offset
+		}
+		LessOrEqual
+		{
+			srcVar1 $frame
+			srcVar2 $itemmax
+			lessEqualVar $offset
+			greaterVar $scroll			
+			resultVar "$translate[1]"
+		}	
+		TextureTransform
+		{
+			translateVar $translate
+			resultVar $basetexturetransform
+		}
+		Equals
+		{
+			srcVar1 $zero
+			resultVar $frame
+		}
+	}
+}
